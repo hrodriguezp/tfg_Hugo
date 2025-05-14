@@ -1,0 +1,175 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+// Include any default variable overrides here (though functions won't be
+
+$colorPrincipal: #E09C25;
+$colorSecundario: #fae399;
+$colorPrincipalOscuro: #131d39;
+$colorSecundarioOscuro: #272727;
+
+.text-colorPrincipal {
+  color: $colorPrincipal;
+}
+
+.bg-colorSecundario {
+  background-color: $colorSecundario;
+}
+
+.border-colorPrincipal {
+  border-color: $colorPrincipal !important;
+}
+
+.btn-colorPrincipal {
+  background-color: $colorPrincipal;
+  color: white;c
+  &:hover {
+    background-color: darken($colorPrincipal, 10%);
+    color: white;
+  }
+}
+
+header #h-custom{
+    height: 200px;
+}
+main {
+    padding: 2rem;
+    text-align: center;
+
+}
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    display: none;
+    z-index: 1000;
+}
+.cookie-banner p {
+    margin: 0;
+    padding: 0;
+}
+.cookie-banner a {
+    color: #ECE2C6;
+    text-decoration: none;
+}
+.cookie-banner a:hover {
+    text-decoration: underline;
+    color: black;
+}
+.accept-btn {
+    background-color: gray;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    font-size: 16px;
+}
+.accept-btn:hover {
+    background-color: #ECE2C6;
+}
+
+  footer{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    margin-top: auto;
+    padding: 0;
+    color: rgb(51, 63, 75);
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header #h-custom{
+    height: 200px;
+  }
+
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    display: none;
+    z-index: 1000;
+  }
+  .cookie-banner p {
+    margin: 0;
+    padding: 0;
+  }
+  .cookie-banner a {
+    color: #ECE2C6;
+    text-decoration: none;
+  }
+  .cookie-banner a:hover {
+    text-decoration: underline;
+    color: black;
+  }
+  .accept-btn {
+    background-color: gray;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .accept-btn:hover {
+    background-color: #ECE2C6;
+  }
+  
+  h5 {
+    font-size: 16px;
+  }
+  
+  body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: #fffaf2;
+    margin: 0;
+  }
+
+h1 {
+    text-align: center;
+    color: var(--colorSecundario);
+}
+
+.equipo-lista {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.equipo {
+    border: 2px solid var(--colorPrincipal);
+    border-radius: 10px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    background-color: white;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.equipo:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    background-color: var(--colorPrincipal);
+}
+
+.equipo a {
+    text-decoration: none;
+    color: var(--colorSecundario);
+    font-weight: bold;
+}

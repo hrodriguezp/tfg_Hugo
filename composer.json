@@ -1,0 +1,20 @@
+{
+    "name": "alumma/tfg-hugo",
+    "description": "Tfg de Hugo Rodríguez Pinilla",
+    "type": "project",
+    "require": {
+        "monolog/monolog": "^3.8"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Alumma\\ProyectoIntermodular\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "HugoRP",
+            "email": "hrodrigpin@educacion.navarra.es"
+        }
+    ]
+}
