@@ -20,39 +20,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dia = $_POST['dia'];
     $hora = $_POST['hora'];
 
-    // Preparar la consulta para verificar si ya está reservada la pista
-    $stmt = $conn->prepare("
-        SELECT h.idHorario
-        FROM horarios h
-        INNER JOIN equipos e ON h.idEquipo = e.idEquipo
-        WHERE e.idPista = (SELECT idPista FROM equipos WHERE idEquipo = ?)
-        AND h.dia = ? AND h.hora = ?
-    ");
-    $stmt->bind_param("iss", $idEquipo, $dia, $hora);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        $mensaje = "La pista ya está reservada en ese horario.";
+    // Validación: comprobar si se seleccionó un equipo
+    if (empty($idEquipo)) {
+        $mensaje = "Por favor, selecciona un equipo antes de confirmar la reserva.";
         $tipoMensaje = "danger";
     } else {
-        // Si no está reservada, realizar la inserción de la nueva reserva
-        $stmt->close();
-        $stmt = $conn->prepare("INSERT INTO horarios (idEquipo, idUsuario, dia, hora) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("iiss", $idEquipo, $idUsuario, $dia, $hora);
-        if ($stmt->execute()) {
-            $mensaje = "Reserva realizada correctamente.";
-            $tipoMensaje = "success";
-        } else {
-            $mensaje = "Error al realizar la reserva.";
-            $tipoMensaje = "danger";
-        }
-    }
+        // Verificar si ya está reservada la pista
+        $stmt = $conn->prepare("
+            SELECT h.idHorario
+            FROM horarios h
+            INNER JOIN equipos e ON h.idEquipo = e.idEquipo
+            WHERE e.idPista = (SELECT idPista FROM equipos WHERE idEquipo = ?)
+            AND h.dia = ? AND h.hora = ?
+        ");
+        $stmt->bind_param("iss", $idEquipo, $dia, $hora);
+        $stmt->execute();
+        $stmt->store_result();
 
-    $stmt->close();
+        if ($stmt->num_rows > 0) {
+            $mensaje = "La pista ya está reservada en ese horario.";
+            $tipoMensaje = "danger";
+        } else {
+            $stmt->close();
+            $stmt = $conn->prepare("INSERT INTO horarios (idEquipo, idUsuario, dia, hora) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("iiss", $idEquipo, $idUsuario, $dia, $hora);
+            if ($stmt->execute()) {
+                $mensaje = "Reserva realizada correctamente.";
+                $tipoMensaje = "success";
+            } else {
+                $mensaje = "Error al realizar la reserva.";
+                $tipoMensaje = "danger";
+            }
+        }
+
+        $stmt->close();
+    }
 }
 
-// Obtener los equipos de baloncesto para el formulario
+// Obtener los equipos de pádel para el formulario
 $resultEquipos = $conn->query("
     SELECT idEquipo, categoria 
     FROM equipos 
@@ -63,14 +68,13 @@ $resultEquipos = $conn->query("
 $diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 $horas = ['09:00','10:00','11:00','12:00','13:00','14:00','16:00','17:00','18:00','19:00','20:00'];
 
-// Incluir el encabezado
 include 'header.php';
 ?>
 
 <div class="container my-5">
     <div class="card shadow-sm mx-auto" style="max-width: 600px;">
         <div class="card-body">
-            <h2 class="card-title text-center mb-4">Reservar Campo de Fútbol</h2>
+            <h2 class="card-title text-center mb-4">Reservar Campo de Pádel</h2>
 
             <!-- Mensaje de confirmación o error -->
             <?php if (!empty($mensaje)): ?>
@@ -118,6 +122,5 @@ include 'header.php';
 <?php include 'footer.php'; ?>
 
 <?php
-// Cerrar la conexión
 $conn->close();
 ?>
