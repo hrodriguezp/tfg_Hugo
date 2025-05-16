@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-05-2025 a las 19:15:13
+-- Tiempo de generación: 16-05-2025 a las 15:56:22
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -48,7 +48,11 @@ INSERT INTO `equipos` (`idEquipo`, `categoria`, `idTemporada`, `idPista`, `depor
 (6, 'Cadete', NULL, 2, 'Baloncesto'),
 (7, 'Senior', NULL, 2, 'Baloncesto'),
 (8, 'Mixto', NULL, 3, 'Padel'),
-(9, 'Veteranos', NULL, 3, 'Padel');
+(9, 'Veteranos', NULL, 3, 'Padel'),
+(11, 'Segunda Infantil', NULL, 1, 'Fútbol'),
+(13, 'Infantil', NULL, 2, 'Baloncesto'),
+(14, 'Segunda Infantil', NULL, 2, 'Baloncesto'),
+(15, 'Cadete', NULL, 1, 'Fútbol');
 
 -- --------------------------------------------------------
 
@@ -111,10 +115,16 @@ INSERT INTO `estadisticasfutbol` (`idJugador`, `partidosJugados`, `partidosGanad
 (3, 16, 9, 5, 2, 7, 3, 3, 0),
 (10, 10, 4, 5, 1, 3, 2, 1, 0),
 (11, 11, 6, 4, 1, 2, 2, 2, 1),
-(12, 9, 5, 3, 1, 4, 1, 0, 0),
+(12, 1, 2, 3, 4, 4, 1, 0, 0),
 (13, 14, 8, 5, 1, 6, 3, 2, 0),
 (14, 15, 9, 5, 1, 5, 4, 1, 0),
-(15, 13, 7, 4, 2, 5, 2, 1, 1);
+(15, 13, 7, 4, 2, 5, 2, 1, 1),
+(16, 1, 2, 3, 4, 5, 6, 7, 8),
+(17, 0, 0, 0, 0, 0, 0, 0, 0),
+(18, 0, 0, 0, 0, 0, 0, 0, 0),
+(28, 4, 35, 6, 4, 9, 2, 7, 1),
+(29, 0, 0, 0, 0, 0, 0, 0, 0),
+(31, 1, 1, 1, 1, 10, 67, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -146,7 +156,8 @@ INSERT INTO `estadisticaspadel` (`idJugador`, `partidosJugados`, `partidosGanado
 (24, 7, 3, 4, 7, 85, 60, 25),
 (25, 10, 5, 5, 12, 105, 88, 33),
 (26, 6, 2, 4, 5, 70, 50, 20),
-(27, 13, 9, 4, 18, 140, 120, 50);
+(27, 13, 9, 4, 18, 140, 120, 50),
+(30, 0, 0, 0, 200, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -168,7 +179,22 @@ CREATE TABLE `horarios` (
 
 INSERT INTO `horarios` (`idHorario`, `idEquipo`, `idUsuario`, `dia`, `hora`) VALUES
 (1, 3, 1, 'Lunes', '17:00:00'),
-(2, 4, 1, 'Miércoles', '14:00:00');
+(16, 8, 1, 'Sábado', '19:00:00'),
+(20, 5, 2, 'Lunes', '14:00:00'),
+(23, 7, 1, 'Lunes', '12:00:00'),
+(26, 2, 1, 'Sábado', '12:00:00'),
+(28, 2, 1, 'Sábado', '09:00:00'),
+(29, 1, 1, 'Jueves', '13:00:00'),
+(30, 4, 1, 'Jueves', '14:00:00'),
+(31, 1, 1, 'Jueves', '20:00:00'),
+(33, 5, 1, 'Jueves', '16:00:00'),
+(34, 4, 1, 'Lunes', '09:00:00'),
+(35, 6, 1, 'Jueves', '14:00:00'),
+(36, 4, 1, 'Jueves', '19:00:00'),
+(37, 3, 1, 'Domingo', '09:00:00'),
+(40, 1, 5, 'Lunes', '20:00:00'),
+(41, 15, 1, 'Viernes', '18:00:00'),
+(43, 11, 1, 'Sábado', '20:00:00');
 
 -- --------------------------------------------------------
 
@@ -218,7 +244,11 @@ INSERT INTO `jugadores` (`idJugador`, `nombreCompleto`, `fechaNacimiento`, `dni`
 (24, 'Alejandro Marín', '1994-06-27', '82345680X', 'Calle H, 3', 'Valencia', 'LIC024', 8),
 (25, 'Tomás Aguilar', '1985-01-14', '92345678Y', 'Calle I, 1', 'Valencia', 'LIC025', 9),
 (26, 'Rafael Núñez', '1983-07-30', '92345679Z', 'Calle I, 2', 'Valencia', 'LIC026', 9),
-(27, 'Ignacio Cruz', '1982-11-08', '92345680A', 'Calle I, 3', 'Valencia', 'LIC027', 9);
+(27, 'Ignacio Cruz', '1982-11-08', '92345680A', 'Calle I, 3', 'Valencia', 'LIC027', 9),
+(28, 'Mario Rodriguez Pinilla', '2008-03-18', '12345678C', 'Calle C, 1A', 'Pamplona', 'FUT12', 1),
+(29, 'Mario Rodriguez Pinilla', '2025-05-30', '12345678f', 'Calle C, 1A', 'Pamplona', 'BAL12', 6),
+(30, 'Mario Rodriguez Pinilla', '2025-05-29', '12345678p', 'Calle C, 1A', 'Pamplona', 'PAL12', 3),
+(31, 'Mario Rodriguez Pinilla', '2025-05-10', '12345678E', 'Calle C, 1A', 'Pamplona', 'FUT15', 15);
 
 -- --------------------------------------------------------
 
@@ -284,7 +314,12 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idUsuario`, `nombreUsuario`, `contrasena`, `esAdministrador`) VALUES
-(1, 'admin', '$2y$10$jYfrrpYk4.zELJOvNCVv1uvcgcqEyxwuh096L1gR3GKBlxY0p04Cq', 0);
+(1, 'admin', '$2y$10$jYfrrpYk4.zELJOvNCVv1uvcgcqEyxwuh096L1gR3GKBlxY0p04Cq', 0),
+(2, 'Hugorp04', '$2y$10$RJOg.bsBBLnmTQiX5yFQPedsHid/5dgeDwGSwXgQfOIqBgpxJqPn2', 0),
+(3, 'Prueba', '$2y$10$z7A742kPHxhD.u4W0dUEPe1HWHQZS3o3SBk.fyOn3QjrSPQenWGbW', 0),
+(4, 'Hugorp004', '$2y$10$fjkrl461DiVtqW5jS8QXEua6zpg5N5kR8vlsGtIAknz1fk.9qDQRe', 0),
+(5, 'Hola', '$2y$10$.c7PSEuVmA5LQYgTmtd.R.dauwHbcqjUvwtkhL8d9YBbYMZE0jg12', 0),
+(6, 'Mariorp08', '$2y$10$JYB9Wx7ZUC9vLIugoeNOHeiCRGDY92fgtTHB8M3hJlk9eTVIxdD9m', 0);
 
 --
 -- Índices para tablas volcadas
@@ -367,19 +402,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `idHorario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idHorario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `idJugador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `idJugador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `pistas`
@@ -403,7 +438,7 @@ ALTER TABLE `temporadas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
